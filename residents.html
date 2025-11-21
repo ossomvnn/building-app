@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Residents</title>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #eef2f6;
+    margin: 0;
+    padding: 30px;
+}
+
+/* Back button always visible */
+#backBtn {
+    background: #6c7a89;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-weight: bold;
+}
+#backBtn:hover { background: #5a6772; }
+
+/* Main card */
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    width: 950px;
+    max-width: 95%;
+    margin: 70px auto 0 auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+    color: #2d3436;
+}
+
+/* Filter section */
+.filter-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.filter-group select {
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d9e6;
+    font-size: 15px;
+    background: white;
+    width: 180px;
+    transition: 0.2s;
+}
+
+.filter-group select:hover {
+    border-color: #4a90e2;
+}
+
+#countText {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input form */
+.form-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.form-group input,
+.form-group select {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccd4dd;
+    font-size: 15px;
+    flex: 1 1 200px;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+/* Add button */
+.add {
+    background: #009E60;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1 1 200px;
+    transition: 0.2s;
+    justify-content: center;
+}
+.add:hover {
+    background: #357ABD;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    table-layout: fixed; /* <- FIXED COLUMNS */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    overflow-wrap: break-word; /* <- Wrap long text */
+}
+
+th {
+    background: #4a90e2;
+    color: white;
+    font-size: 15px;
+}
+
+tr:nth-child(even) { background: #f7f9fc; }
+tr:hover { background: #e8f1ff; }
+
+/* Remove button */
+.removeBtn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.removeBtn:hover { background: #c0392b; }
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+    font-size: 12.5px;
+}
+</style>
+</head>
+
+<body>
+
+<button id="backBtn" onclick="location.href='index.html'">← Back</button>
+
+<div class="card">
+    <h2>Residents</h2>
+
+    <div class="filter-group">
+        <select id="partFilter" onchange="renderResidents()">
+            <option value="All">All Parts</option>
+            <option value="A">Part A</option>
+            <option value="B">Part B</option>
+            <option value="C">Part C</option>
+            <option value="D">Part D</option>
+        </select>
+        <div id="countText"></div>
+    </div>
+
+    <div class="form-group">
+        <input id="name" placeholder="Name">
+        <select id="part">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+        </select>
+        <input id="room" placeholder="Room Number">
+        <button class="add" onclick="addResident()">Add Resident</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Part</th>
+                <th>Room</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="residentsTableBody"></tbody>
+    </table>
+</div>
+
+<footer>Developed By Osman</footer>
+
+<script>
+function loadResidents(){return JSON.parse(localStorage.getItem('residents')||'[]');}
+function saveResidents(r){localStorage.setItem('residents',JSON.stringify(r));}
+
+function renderResidents(){
+    const table=document.getElementById('residentsTableBody');
+    const all=loadResidents();
+    const filter=document.getElementById('partFilter').value;
+    const filtered = filter==='All' ? all : all.filter(r=>r.part===filter);
+
+    table.innerHTML='';
+    filtered.forEach(r=>{
+        const tr=document.createElement('tr');
+        tr.innerHTML=`<td>${r.name}</td>
+                      <td>${r.part}</td>
+                      <td>${r.room}</td>
+                      <td><button class="removeBtn" onclick="removeResident('${r.name}')">Remove</button></td>`;
+        table.appendChild(tr);
+    });
+
+    document.getElementById('countText').textContent = 
+        `Showing ${filtered.length} resident(s) in ${filter}`;
+}
+
+function addResident(){
+    const name=document.getElementById('name').value;
+    const part=document.getElementById('part').value;
+    const room=document.getElementById('room').value;
+
+    if(!name || !part || !room){
+        alert('Please fill all fields.');
+        return;
+    }
+
+    const residents=loadResidents();
+    residents.push({name, part, room});
+    saveResidents(residents);
+
+    document.getElementById('name').value='';
+    document.getElementById('room').value='';
+
+    renderResidents();
+}
+
+function removeResident(name){
+    if(!confirm('Remove this resident?')) return;
+    let r=loadResidents();
+    r=r.filter(x => x.name !== name);
+    saveResidents(r);
+    renderResidents();
+}
+
+window.onload = renderResidents;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+"name": "building-app",
+"version": "1.0.0",
+"description": "Building manager app (Electron + HTML/CSS/JS)",
+"main": "main.js",
+"scripts": {
+"start": "electron ."
+},
+"devDependencies": {
+"electron": "^26.0.0"
+}
+}

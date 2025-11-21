@@ -1,0 +1,89 @@
+/* Body */
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Centered card */
+.card.center {
+    background: #fff;
+    padding: 30px 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.card.center:hover {
+    transform: translateY(-3px);
+}
+
+/* Heading */
+.card h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Inputs and selects */
+.card input,
+.card select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.card input:focus,
+.card select:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+/* Buttons */
+.card button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background 0.2s ease;
+}
+
+.card button:first-of-type {
+    background: #4a90e2;
+    color: #fff;
+}
+
+.card button:first-of-type:hover {
+    background: #357ABD;
+}
+
+.card button:last-of-type {
+    background: #7f8c8d;
+    color: #fff;
+}
+
+.card button:last-of-type:hover {
+    background: #636e72;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #888;
+    font-size: 13px;
+}

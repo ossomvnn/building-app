@@ -1,0 +1,32 @@
+[
+  {
+    "id": 101,
+    "name": "Alice Johnson",
+    "part": "A",
+    "room": "101"
+  },
+  {
+    "id": 102,
+    "name": "Bob Smith",
+    "part": "B",
+    "room": "202"
+  },
+  {
+    "id": 103,
+    "name": "Charlie Davis",
+    "part": "C",
+    "room": "303"
+  },
+  {
+    "id": 104,
+    "name": "Diana Evans",
+    "part": "D",
+    "room": "404"
+  },
+  {
+    "id": 105,
+    "name": "Ethan Brown",
+    "part": "A",
+    "room": "105"
+  }
+]

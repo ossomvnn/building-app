@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background: #f0f2f5;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        text-align: center;
+    }
+
+    h1 {
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    .menu {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .menu button {
+        background: #4a90e2;
+        border: none;
+        padding: 18px;
+        border-radius: 12px;
+        font-size: 18px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        transition: 0.2s ease;
+    }
+
+    .menu button:hover {
+        background: #357ABD;
+        transform: translateY(-3px);
+    }
+
+    footer {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: #777;
+        font-size: 13px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Building Manager</h1>
+
+    <div class="menu">
+        <button onclick="location.href='residents.html'">Residents</button>
+        <button onclick="location.href='issue-code.html'">Issue Code</button>
+        <button onclick="location.href='blocked.html'">Blocked</button>
+        <button onclick="location.href='appointments.html'">Appointments</button>
+
+    </div>
+</div>
+
+<footer>Developed by Osman</footer>
+
+</body>
+</html>
