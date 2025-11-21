@@ -1,7 +1,7 @@
 {
-  "name": "klarcode-manager",
+  "name": "building-app",
   "version": "0.0.1",
-  "description": "KlarCode Manager - Cross-platform Electron app",
+  "description": "building-app - Cross-platform Electron app",
   "main": "main.js",
   "author": "Your Name",
   "license": "MIT",
@@ -12,15 +12,14 @@
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "com.yourname.klarcodemanager",
+    "appId": "com.yourname.building-app",
     "productName": "KlarCode Manager",
     "mac": {
       "category": "public.app-category.utilities",
       "target": [
         "dmg",
         "zip"
-      ],
-      "icon": "assets/icon.icns"
+      ]
     },
     "win": {
       "target": [
