@@ -66,6 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
     function isBlocked(name) {
         return blocked.some(b => b.name === name && new Date(b.until) > new Date());
     }
+    function showMessage(msg) {
+    const box = document.createElement("div");
+    box.innerText = msg;
+    box.style.position = "fixed";
+    box.style.top = "20px";
+    box.style.left = "50%";
+    box.style.transform = "translateX(-50%)";
+    box.style.background = "#ff4444";
+    box.style.color = "#fff";
+    box.style.padding = "12px 18px";
+    box.style.borderRadius = "8px";
+    box.style.zIndex = "99999";
+    box.style.fontFamily = "Segoe UI";
+    document.body.appendChild(box);
+    setTimeout(() => box.remove(), 2000);
+}
+
 
     // --- Add appointment with OK / Print popup ---
     addBtn.addEventListener("click", () => {
@@ -76,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const note = appNote.value;
 
         if (!part || !name || !date || !time) {
-            alert("Please fill all fields.");
+            showMessage("Please fill all fields");
+;
             return;
         }
 
